@@ -1,0 +1,22 @@
+// I like compiling and minifying the CSS locally to produce one app.css file
+// To do this I take "stable" builds of my vendor libraries and combine them with local rules
+@import "bootstrap-3.3.4/bootstrap.less";
+@import "font-awesome-4.3.0/less/font-awesome.less";
+
+body {
+  background: url(./plaid_bg.jpg) repeat;
+}
+
+.container {
+  background: rgba(255,255,255,0.90);
+}
+
+.word-list {
+  height: 80vh;
+}
+
+.pdf-frame {
+  width:100%;
+  height:100vh;
+  overflow-y: scroll;
+}

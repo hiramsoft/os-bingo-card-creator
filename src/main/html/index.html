@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+    <title>One Step Bingo Card Creator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="vendor/jspdf.min.js"></script>
+    <!-- build:jsmain -->
+    <!-- endbuild -->
+    <!-- build:css -->
+    <!-- endbuild -->
+</head>
+<body ng-controller="BingoCardController" ng-cloak>
+<div class="container">
+    <!-- Nav Bar -->
+    <div class="row">
+        <div class="col-lg-12">
+            <span class="pull-right lead" style="margin-top:1em"><a href="help.html">Help and FAQs</a></span>
+            <h1>
+                One Step Bingo Card Creator
+                <a href="https://www.hiramsoftware.com/os-bingo-card-creator/" title="Bookmark One Step Bingo Card Creator">
+                    <i class="fa fa-link"></i>
+                </a>
+            </h1>
+            <div class="clearfix"></div>
+            <hr/>
+        </div>
+    </div>
+
+
+    <!-- End Nav -->
+
+
+    <!-- Main Page Content and Sidebar -->
+
+    <form class="form" ng-submit="generateBingoCard()">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-horizontal text-center">
+                    <button class="btn btn-primary btn-lg" type="submit">
+                        Generate Cards
+                        <i class="fa fa-table"></i>
+                    </button>
+                </div>
+                <div class="clearfix" style="padding-bottom:2em;"></div>
+            </div>
+            <div class="col-md-9">
+                <div class="alert alert-danger" ng-show="errorMessage">
+                    <i class="fa fa-exclamation-triangle"></i> {{errorMessage}}
+                </div>
+                <div class="alert alert-info visible-sm-block">
+                    <i class="fa fa-info-circle"> </i> Hey! I see you are on a small screen in portrait mode.  One Step Bingo Card Creator works best in landscape mode (rotate your device, if possible).
+                </div>
+                <div class="pull-right" ng-show="generating">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>
+                <div class="pull-right" ng-show="downloadLink">
+                    <a class="btn btn-default bingo-card-download" ng-href="{{downloadLink}}" download="OneStepBingoCard.pdf">Download <i class="fa fa-download"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+                <label>Words to use (one per line)</label>
+                <textarea class="form-control word-list" rows="25" cols="20" ng-model="wordList">
+                </textarea>
+                <label>
+                    Number of Student Pages
+                    <select class="form-control" ng-model="numPages">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>4</option>
+                        <option>8</option>
+                        <option>16</option>
+                        <option>20</option>
+                        <option>24</option>
+                        <option>26</option>
+                        <option>30</option>
+                        <option>32</option>
+                        <option>34</option>
+                        <option>36</option>
+                        <option>40</option>
+                        <option>64</option>
+                        <option>128</option>
+                        <option>256</option>
+                        <option>512</option>
+                    </select>
+                </label>
+                <div class="alert alert-danger" ng-show="numPages > 64">Generating more than 64 pages can take a long time.  Your browser will "hang."  Test out with fewer pages and chose a larger page once you are ready to step away for fresh coffee.  Please be patient.</div>
+                <label>
+                    Number of Boards per Page
+                    <select class="form-control" ng-model="numBoardsPerPage">
+                        <option>1</option>
+                        <option>4</option>
+                    </select>
+                </label>
+                <label>
+                    Number of pre-computed drawings
+                    <select class="form-control" ng-model="numDrawings">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>4</option>
+                        <option>8</option>
+                        <option>16</option>
+                        <option>32</option>
+                        <option>64</option>
+                    </select>
+                </label>
+                <label>
+                    Cards Title
+                    <input type="text" class="form-control" ng-model="boardTitle" placeholder="Bingo!">
+                </label>
+                <label>
+                    Free Space Text
+                    <input type="text" class="form-control" ng-model="freeSpaceText" placeholder="Free!">
+                </label>
+                <label>
+                    Drawing Page Title
+                    <input type="text" class="form-control" ng-model="drawingTitleText" placeholder="Drawing Order #">
+                </label>
+                <label>
+                    Show page numbers
+                    <input type="checkbox" class="form-contol" ng-model="showPageNums"/>
+                </label>
+                <label>
+                    Page Format
+                    <select class="form-control" ng-model="pageFormat">
+                        <option value="letter">American US Letter</option>
+                        <option value="a4">European A4</option>
+                    </select>
+                </label>
+        </div>
+        <div class="col-md-9">
+            <iframe id="bingo_card_output" class="pdf-frame"></iframe>
+            <div class="clearfix"></div>
+        </div>
+
+
+        </div>
+    </form>
+
+    <!-- End Main Content and Sidebar -->
+
+</div>
+<!-- Footer -->
+
+<footer class="row">
+    <div class="small-12 columns" style="margin-bottom:2em;">
+        <div class="text-center">
+            <h4>
+                <small>
+                    <em>Copyright 2015 <a href="https://www.hiramsoftware.com">Hiram Software</a>
+                        <!--
+                        This page is running
+                        ========================================================================
+                        <!-- build:short -->
+                        <!-- endbuild -->
+                        ========================================================================
+                        Help make this the best bingo card resource for everyone, for free!
+                        -->
+                    </em>
+                </small>
+            </h4>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+
